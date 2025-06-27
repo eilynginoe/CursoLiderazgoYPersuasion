@@ -1,5 +1,5 @@
 ---
-const numero = import.meta.env.VITE_WHATSAPP_NUMBER;
+const numero = `${import.meta.env.VITE_WHATSAPP_NUMBER}`;
 const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, me interesa recibir más información.")}`;
 const whatsappCatalogo = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, me gustaría consultar el catálogo de cursos.")}`;
 const emailLink = `mailto:info@tuempresa.com`; // Reemplaza con tu dirección real
@@ -85,6 +85,7 @@ const emailLink = `mailto:info@tuempresa.com`; // Reemplaza con tu dirección re
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
+    const numero = `${import.meta.env.VITE_WHATSAPP_NUMBER}`;
 
     // Abrir modal
     document.querySelectorAll("[data-modal-open]").forEach((trigger) => {

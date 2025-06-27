@@ -1,6 +1,6 @@
 ---
 // Parte server-side (build time)
-const numero = import.meta.env.VITE_WHATSAPP_NUMBER;
+const numero = `${import.meta.env.VITE_WHATSAPP_NUMBER}`;
 const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, me interesa recibir más información.")}`;
 ---
 
@@ -227,7 +227,7 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
-    const numero = "{numero}";
+    const numero = `${numero}`; // 🔁 esto inserta el número real al generar el HTML
 
     // Abrir modal
     document.querySelectorAll("[data-modal-open]").forEach((trigger) => {
@@ -279,7 +279,6 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 <style>
   .curso-wrapper {
     background-color: #1a1919;
-    /*padding: 2rem;*/
     min-height: 100vh;
     color: white;
     display: flex;
@@ -526,6 +525,7 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
   .check {
     display: inline-block;
     width: 20px; /* ancho del icono */
+    aspect-ratio: 1 / 1;
     height: 20px; /* alto del icono */
     margin-right: 8px; /* separación entre icono y texto */
     background-image: url("list.svg");

@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/fonts/arsenal-sc/ArsenalSC-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Arsenal SC';
+  src: url('/fonts/arsenal-sc/ArsenalSC-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dosis';
+  src: url('/fonts/dosis/Dosis-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Dosis';
+  src: url('/fonts/dosis/Dosis-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fuente predeterminada */
+body {
+  font-family: 'Dosis', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Arsenal SC', serif;
+}

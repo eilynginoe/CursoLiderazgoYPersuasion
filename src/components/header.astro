@@ -9,6 +9,7 @@
             loading="lazy"
             src="./favicon.svg"
             alt="Logo Leanind consulting"
+            style="width: 60px; height: 60px; object-fit: contain; display: block;"
           />
           <img
             class="imgLogo-letras"
@@ -20,14 +21,24 @@
       </a>
     </div>
 
- <!-- DERECHA: Usuario y botón -->
+    <!-- DERECHA: Usuario y botón -->
     <div class="header-derecha">
       <div class="usuario-info">
-        <span class="bienvenida">Bienvenido/a <strong class="usuario">Usuario/a!</strong></span>
+        <span class="bienvenida"
+          >Bienvenido/a <strong class="usuario">Usuario/a!</strong></span
+        >
         <span class="subtexto">¡Disfruta del modo de prueba!</span>
       </div>
-      <a href="https://landing-page-comunicacion-persuasiv.vercel.app/" class="salir">
-        SALIR <img src="/salir.svg" alt="salir" class="icono-salida" loading="lazy"/>
+      <a
+        href="https://landing-page-comunicacion-persuasiv.vercel.app/"
+        class="salir"
+      >
+        SALIR <img
+          src="/salir.svg"
+          alt="salir"
+          class="icono-salida"
+          loading="lazy"
+        />
       </a>
     </div>
   </section>
@@ -68,8 +79,8 @@
 
   .imgLogo-letras {
     height: 50px;
-     aspect-ratio: auto 200 / 80;
-     width: auto;
+    aspect-ratio: auto 200 / 80;
+    width: auto;
     transition: transform 0.3s ease;
   }
 
@@ -149,7 +160,6 @@
       height: 45px;
     }
 
-
     .header-derecha {
       flex-direction: column;
       align-items: flex-end;
@@ -157,4 +167,3 @@
     }
   }
 </style>
-

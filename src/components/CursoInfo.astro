@@ -17,13 +17,15 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
               src="/limit.svg"
               alt="Cupos limitados"
               class="limit-img"
-              loading="lazy"
+              width="454"
+              height="148"
             />
             <img
-              src="/equipo.svg"
+              src="/equipo.webp"
               alt="Equipo"
               class="equipo-img"
-              loading="lazy"
+              width="454"
+              height="199"
             />
           </div>
         </div>
@@ -170,7 +172,11 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 
     <!-- Botones -->
     <div class="modal-buttons">
-      <a href={whatsappLink} onclick="event.preventDefault();" class="inscribirme" data-wa-text="Hola, quiero la prueba gratuita de este curso"
+      <a
+        href={whatsappLink}
+        onclick="event.preventDefault();"
+        class="inscribirme"
+        data-wa-text="Hola, quiero la prueba gratuita de este curso"
         >Inscribirme gratis</a
       >
       <button class="cerrar-modal" data-modal-close>Cerrar</button>
@@ -193,7 +199,11 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 
     <!-- Botones al pie -->
     <div class="modal-buttons">
-      <a href={whatsappLink} onclick="event.preventDefault();" class="inscribirme" data-wa-text="Hola, quiero la prueba gratuita de este curso"
+      <a
+        href={whatsappLink}
+        onclick="event.preventDefault();"
+        class="inscribirme"
+        data-wa-text="Hola, quiero la prueba gratuita de este curso"
         >Inscribirme gratis</a
       >
       <button class="cerrar-modal" data-modal-close>Cerrar</button>
@@ -216,7 +226,11 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 
     <!-- Botones -->
     <div class="modal-buttons">
-      <a href={whatsappLink} onclick="event.preventDefault();" class="inscribirme" data-wa-text="Hola, quiero la prueba gratuita de este curso"
+      <a
+        href={whatsappLink}
+        onclick="event.preventDefault();"
+        class="inscribirme"
+        data-wa-text="Hola, quiero la prueba gratuita de este curso"
         >Inscribirme gratis</a
       >
       <button class="cerrar-modal" data-modal-close>Cerrar</button>
@@ -277,6 +291,13 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 </script>
 
 <style>
+  /* General: box-sizing en todo */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   .curso-wrapper {
     background-color: #1a1919;
     min-height: 100vh;
@@ -320,13 +341,15 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     font-size: clamp(16px, 2.5vw, 1.5rem);
   }
 
+  /* Importante para evitar saltos: reservar espacio mínimo */
   .card-y-botones {
     display: flex;
     flex-direction: column;
-    align-items: center; /* ya lo tienes */
+    align-items: center;
     gap: 1rem;
     width: 100%;
     max-width: 600px;
+    min-height: 400px; /* evita saltos al cargar contenido */
   }
 
   .card-wrapper {
@@ -352,11 +375,13 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     display: flex;
     flex-direction: column;
     margin: 0.8rem;
-    cursor: pointer; /* Cambia cursor para indicar que se puede hacer clic */
+    cursor: pointer;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease,
       background-color 0.3s ease;
+    min-width: 240px; /* mínimo ancho para evitar cambios bruscos */
+    min-height: 120px; /* mínimo alto acorde a la imagen + texto */
   }
 
   .card-limit:hover {
@@ -364,9 +389,28 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     box-shadow:
       0 8px 16px rgba(255, 255, 255, 0.2),
       0 4px 8px rgba(0, 0, 0, 0.3);
-    background-color: #f5f5f5; /* Opcional: un toque más claro */
+    background-color: #f5f5f5;
   }
 
+  .limit-img {
+    width: 454px; /* tamaño original ancho */
+    height: 148px; /* tamaño original alto */
+    max-width: 100%; /* que no exceda el contenedor */
+    height: auto; /* mantiene la proporción */
+    display: block;
+    object-fit: contain;
+  }
+
+  .equipo-img {
+    width: 454px; /* tamaño original ancho */
+    height: 199px; /* tamaño original alto */
+    max-width: 100%; /* que no exceda el contenedor */
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Contenedores flexibles para botones y competencias */
   .botones,
   .competencias {
     width: 100%;
@@ -374,20 +418,22 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     gap: 10px;
   }
 
-  .botones button {
-    flex: 1;
-    height: 50px;
-  }
-
+  /* Botones con tamaño fijo mínimo para evitar cambios */
   .botones button,
   .competencias button,
   .competencias a {
+    min-width: 150px;
+    min-height: 50px;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
     cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    box-sizing: border-box;
   }
 
+  /* Hover solo con transform y box-shadow, no padding o borde */
   .botones button:hover,
   .competencias button:hover,
   .competencias a:hover {
@@ -405,16 +451,12 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
   }
 
   .competencias button {
-    width: 100%; /* hace que usen el mismo ancho que .botones */
+    width: 100%;
     height: 50px;
     font-family: "Dosis", sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
-    border-radius: 6px;
-    border: none;
     color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
   }
 
   .contenido,
@@ -424,13 +466,12 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     font-weight: bold;
     font-family: "Dosis", sans-serif;
     font-size: clamp(14px, 2.5vw, 20px);
-    font-weight: bold;
     border-radius: 6px;
-    border: none;
     color: white;
     cursor: pointer;
-    transition: all 0.3s ease;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+    white-space: nowrap;
   }
 
   .contenido {
@@ -439,11 +480,6 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
     background-color: #8c0303;
     box-shadow: inset 5px 5px 4px 4px rgba(246, 159, 169, 0.6);
     border: none;
-    color: white;
-    cursor: pointer;
-    /*padding: 0.8rem 2rem;*/
-    transition: all 0.3s ease;
-    white-space: nowrap;
   }
 
   .contenido .text-hover {
@@ -462,19 +498,11 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
   .inscripcion {
     position: relative;
     overflow: hidden;
-    font-weight: bold;
-    font-family: "Dosis", sans-serif;
-    font-size: clamp(14px, 2.5vw, 20px);
-    text-align: center;
-    text-decoration: none;
     background-color: #615d5d;
     box-shadow: inset 5px 5px 4px 4px rgba(255, 255, 255, 0.3);
     border: none;
-    color: white;
-    cursor: pointer;
-    /*padding: 0.8rem 1rem;*/
-    transition: all 0.3s ease;
-    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
   }
 
   .inscripcion .text-hover {
@@ -524,10 +552,10 @@ const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, m
 
   .check {
     display: inline-block;
-    width: 20px; /* ancho del icono */
+    width: 20px;
     aspect-ratio: 1 / 1;
-    height: 20px; /* alto del icono */
-    margin-right: 8px; /* separación entre icono y texto */
+    height: 20px;
+    margin-right: 8px;
     background-image: url("list.svg");
     background-size: contain;
     background-repeat: no-repeat;

@@ -12,18 +12,39 @@ import Footer from "../components/footer.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>LEANIND Consulting</title>
+    <link
+      rel="preload"
+      href="/fonts/arsenal-sc/ArsenalSC-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/dosis/Dosis-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/dosis/Dosis-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+
     <!-- NO scripts aquí para GTM o Clarity -->
   </head>
   <body>
     <Header />
     <main><slot /></main>
     <Footer />
-    
+
     <!-- Carga el script que inicia GTM y Clarity solo después del load -->
     <script type="module" src="/src/loadAnalytics.js"></script>
   </body>
 </html>
-
 
 <style>
   html,

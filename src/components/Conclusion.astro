@@ -1,0 +1,359 @@
+---
+const numero = import.meta.env.VITE_WHATSAPP_NUMBER;
+const whatsappLink = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, me interesa recibir más información.")}`;
+const whatsappCatalogo = `https://wa.me/${numero}?text=${encodeURIComponent("Hola, me gustaría consultar el catálogo de cursos.")}`;
+const emailLink = `mailto:info@tuempresa.com`; // Reemplaza con tu dirección real
+---
+
+<section class="contacto">
+  <div class="cards-zone">
+    <h3 class="cierre-contacto">¿Te gustaría profundizar en algún tema?</h3>
+
+    <div class="cards-group">
+      <div class="cards">
+        <div class="card-wrapper">
+          <a
+            href={whatsappCatalogo}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="consulta tappable-hint"
+          >
+            <span class="subtexto">Quiero consultar el catálogo de cursos</span>
+          </a>
+        </div>
+
+        <div class="card-wrapper">
+          <a href={emailLink} class="email tappable-hint">
+            <span class="subtexto">Contáctanos por Email</span>
+          </a>
+        </div>
+
+        <div class="card-wrapper">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="whatsapp"
+          >
+            <span class="subtexto tappable-hint">Escríbenos por Whatsapp</span>
+          </a>
+        </div>
+      </div>
+      <div class="linkedin-wrapper">
+        <button class="linkedin" data-modal-open="modal-linkedin">
+          Quiero validar mis competencias en LINKEDIN
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal: Validación en LinkedIn -->
+<div class="modal" data-modal-id="modal-linkedin">
+  <div class="modal-content">
+    <span class="close" data-modal-close>&times;</span>
+
+    <!-- Texto explicativo -->
+    <p>Para validar tus competencias en LinkedIn, solo necesitas:</p>
+    <ul>
+      <li>✔️ Completar el curso</li>
+      <li>✔️ Aprobar la evaluación final</li>
+      <li>✔️ Entregar un pequeño proyecto práctico</li>
+    </ul>
+    <p>
+      Evaluaremos tu trabajo y, si cumples con los requisitos, podrás agregar
+      las habilidades a tu perfil de LinkedIn. ¡Una gran forma de mostrar lo que
+      sabes hacer! 💪
+    </p>
+
+    <!-- Botones -->
+    <div class="modal-buttons">
+      <a
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inscribirme-link"
+      >
+        <span class="subtexto tappable-hint">Escríbenos por Whatsapp</span>
+      </a>
+
+      <button class="cerrar-modal" data-modal-close>Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+
+    // Abrir modal
+    document.querySelectorAll("[data-modal-open]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const id = trigger.getAttribute("data-modal-open");
+        const modal = document.querySelector(`[data-modal-id="${id}"]`);
+        if (modal) {
+          modal.style.display = "flex";
+          body.classList.add("modal-open"); // bloquear fondo
+        }
+      });
+    });
+
+    // Cerrar modal por botón o click fuera
+    document.querySelectorAll("[data-modal-close]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const modal = btn.closest(".modal");
+        if (modal) {
+          modal.style.display = "none";
+          body.classList.remove("modal-open"); // liberar fondo
+        }
+      });
+    });
+
+    // Cerrar si se hace clic fuera del contenido
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+          body.classList.remove("modal-open");
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .contacto {
+    background-color: #1a1919;
+    padding: 4rem;
+    color: #000000;
+    box-sizing: border-box;
+  }
+
+  .cierre-contacto {
+    color: #ffffff;
+    font-family: "Arsenal SC", sans-serif;
+    font-size: 1.8rem;
+    margin-left: 60px;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+  }
+
+  .cards-group {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .cards {
+    display: flex;
+    flex-grow: 1;
+    gap: 10px;
+  }
+
+  .card-wrapper {
+    background: #dcdcdc;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow:
+      inset 4px 4px 8px #b8b8b8,
+      inset -4px -4px 8px #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .consulta,
+  .email,
+  .whatsapp {
+    width: 7.5vw;
+    min-width: 150px;
+    height: 80px;
+    background: #d9d9d9;
+    border-radius: 16px;
+    box-shadow:
+      6px 6px 12px #b8b9be,
+      -6px -6px 12px #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-family: "Dosis", sans-serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer; /* Cambia cursor para indicar que se puede hacer clic */
+    text-decoration: none;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .consulta:hover,
+  .email:hover,
+  .whatsapp:hover {
+    color: #8c0303;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+      0 8px 16px rgba(255, 255, 255, 0.2),
+      0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5; /* Opcional: un toque más claro */
+  }
+
+  .linkedin-wrapper {
+    flex-shrink: 0;
+  }
+
+  .linkedin {
+    height: 50px;
+    padding: 0 3rem;
+    font-weight: bold;
+    font-family: "Dosis", sans-serif;
+    font-size: clamp(14px, 2.5vw, 20px);
+    border-radius: 12px;
+    background-color: #8c0303;
+    box-shadow: inset 5px 5px 4px 4px rgba(246, 159, 169, 0.6);
+    border: none;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-top: 3rem;
+  }
+
+  .linkedin:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+  }
+
+  .modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    font-family: "Dosis", sans-serif;
+  }
+
+  .modal-content li {
+    list-style: none;
+  }
+
+  .modal .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .inscribirme-link {
+    background-color: #8c0303;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .inscribirme-link:hover {
+    filter: brightness(1.1);
+  }
+
+  .cerrar-modal {
+    background: #ccc;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* 📱 Responsive: LinkedIn se mueve abajo si no cabe */
+  @media (max-width: 1024px) {
+    .cards-group {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .cards {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .linkedin-wrapper {
+      align-self: center;
+    }
+  }
+
+  /* 📱 Más estrecho aún: botones uno debajo del otro */
+  @media (max-width: 600px) {
+    .cards-zone {
+      box-sizing: border-box;
+    }
+
+    .cards {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .cierre-contacto {
+      margin-left: 5px;
+      text-align: center;
+    }
+
+    .consulta,
+    .email,
+    .whatsapp {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .linkedin {
+      margin-top: auto;
+      padding: 1rem;
+    }
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .tappable-hint {
+      animation: gentle-pulse 2.5s ease-in-out infinite;
+    }
+  }
+
+  @keyframes gentle-pulse {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+</style>
